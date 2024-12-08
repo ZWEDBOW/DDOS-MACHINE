@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Player Ddos</title>
+    
+    <!-- Link do czcionki Roboto z Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Zastosowanie czcionki Roboto na całej stronie */
+        body {
+            font-family: 'Roboto', sans-serif; /* Ustawienie czcionki Roboto */
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e; /* Ciemne tło */
+            color: white; /* Biały tekst na ciemnym tle */
+        }
+        /* Nagłówek z dwoma logo */
+        .header {
+            display: flex;
+            justify-content: space-between; /* Rozstawia logo na lewo i prawo */
+            align-items: center;
+            padding: 10px;
+            background-color: #2b2b2b; /* Ciemne tło nagłówka */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .header img {
+            height: auto;
+        }
+        .logo-left {
+            width: 250px; /* Większe logo po lewej stronie */
+        }
+        .logo-right {
+            width: 100px; /* Mniejsze logo po prawej stronie */
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #333; /* Ciemniejszy kolor tła dla kontenera */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            color: #f4f4f4; /* Jasny kolor tekstu */
+            font-size: 48px; /* Powiększony nagłówek */
+            font-weight: bold; /* Grubsza czcionka */
+            text-transform: uppercase; /* Ustawienie wielkich liter */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        td {
+            padding: 10px;
+            text-align: center;
+            color: #f4f4f4; /* Jasny tekst w tabeli */
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%; /* Zapewnia, że pole tekstowe nie wychodzi poza tabelę */
+            padding: 15px;
+            font-size: 20px;
+            border: 1px solid #555; /* Ciemniejsze obramowanie */
+            border-radius: 5px;
+            background-color: #444; /* Ciemne tło pola tekstowego */
+            color: white; /* Biały tekst w polu */
+            box-sizing: border-box; /* Zapewnia, że padding nie wychodzi poza szerokość */
+        }
+        button {
+            width: 100%;
+            padding: 20px; /* Powiększone przyciski */
+            font-size: 24px; /* Powiększony tekst w przycisku */
+            background-color: #b20000; /* Ciemnoczerwony przycisk */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #900000; /* Ciemniejszy odcień czerwonego przy najechaniu */
+        }
+        select {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+        }
+        .message {
+            text-align: center;
+            font-size: 20px;
+            color: #ff3333; /* Czerwony kolor dla komunikatów */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nagłówek z dwoma logo -->
+    <div class="header">
+        <!-- Logo po lewej stronie, większe -->
+        <img src="logo-left.png" alt="Logo Left" class="logo-left" /> <!-- Zmień na własne logo po lewej stronie -->
+        <!-- Logo po prawej stronie -->
+        <img src="logo-right.png" alt="Logo Right" class="logo-right" /> <!-- Zmień na własne logo po prawej stronie -->
+    </div>
+
+    <div class="container">
+        <h2>Fast Player Ddos</h2>
+
+        <table border="1">
+            <tr>
+                <td><strong>TYPE PLAYER NICK:</strong></td> <!-- Zmieniony napis na "TYPE PLAYER NICK" -->
+                <td><input type="text" id="nick" placeholder="TYPE PLAYER NICK" /></td> <!-- Zmieniony napis na "TYPE PLAYER NICK" -->
+            </tr>
+        </table>
+
+        <button onclick="openGBSelector()">DDOS</button> <!-- Zmieniony tekst na "DDOS" i powiększony -->
+    </div>
+
+    <script>
+        function openGBSelector() {
+            var nick = document.getElementById("nick").value;
+            if (nick.trim() === "") {
+                alert("Proszę wpisać nick.");
+                return;
+            }
+
+            // Tworzenie nowego okna
+            var gbWindow = window.open("", "Ilość GB", "width=400,height=300");
+
+            // Dodanie treści do okna
+            gbWindow.document.write('<h2>Wybierz ilość GB</h2>');
+            gbWindow.document.write('<select id="gbSelect">');
+            gbWindow.document.write('<option value="10">10 GB</option>');
+            gbWindow.document.write('<option value="40">40 GB</option>');
+            gbWindow.document.write('<option value="100">100 GB</option>');
+            gbWindow.document.write('<option value="500">500 GB</option>');
+            gbWindow.document.write('</select>');
+            gbWindow.document.write('<button onclick="startDDOS()">OK</button>');
+            gbWindow.document.write('<div id="message"></div>');
+
+            gbWindow.startDDOS = function() {
+                var selectedGB = gbWindow.document.getElementById("gbSelect").value;
+                gbWindow.document.getElementById("message").innerText = "DDOSuje...";
+                
+                setTimeout(function() {
+                    gbWindow.document.getElementById("message").innerText = "Gracz Zddosowany!";
+                    gbWindow.close(); // Zamknięcie okna po upływie 1 minuty
+                }, 60000); // 1 minuta = 60000 ms
+            }
+        }
+    </script>
+
+</body>
+</html>
